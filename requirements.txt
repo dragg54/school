@@ -1,3 +1,4 @@
 djangorestframework
 corsheaders
 Pillow
+stripe
