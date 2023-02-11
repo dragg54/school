@@ -32,6 +32,7 @@ CORS_ALLOW_ALL_ORIGINS: True
 
 INSTALLED_APPS = [
     'rest_framework',
+    'stripe',
     'role.apps.RoleConfig',
     'student.apps.StudentConfig',
     'supervisor.apps.SupervisorConfig',
@@ -131,3 +132,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = "/media/"
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media/')
+SITE_BASE_URL = "http://localhost:3000/"
+STRIPE_SECRET_KEY = "sk_test_51MZnT6HXwt4BpIBQC26Z5Z4ujiT51tzc1QZF95eTENcL6MwfwvmCS6X5V1ERNVGzXaYwK409aG0QyCt6FVGOaqt9002ssFDb8A"
