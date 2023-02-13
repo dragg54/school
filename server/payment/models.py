@@ -9,3 +9,10 @@ class Payment(models.Model):
     amount_payable = models.IntegerField()
     stripe_price_id = models.CharField(max_length=100, default=1)
     amount_paid = models.IntegerField(default=0)
+
+
+class PaymentHistory(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    amount_paid = models.IntegerField()
+    payment_method = models.CharField(max_length=20)
+    at = models.DateField()
