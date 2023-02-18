@@ -3,6 +3,8 @@ from . import views
 
 urlpatterns = [
     path("profile/create", views.CreateStudentProfileAPIView.as_view(), name="create_profile"),
-    path("getstudents", views.GetAllStudents.as_view(), name="get students"),
-    path("getstudent/<str:pk>", views.GetStudent.as_view(), name="get student"),
+    path("get-students", views.GetAllStudentProfile.as_view(), name="get students"),
+    path("get-student/<str:pk>", views.GetStudentProfile.as_view(), name="get student"),
+    path("delete-student/<str:pk>", views.DeleteStudentProfile.as_view(), name="delete student"),
+    path("update-student/<str:pk>", views.UpdateStudentProfile.as_view(), name="update student")
 ]
