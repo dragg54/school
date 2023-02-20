@@ -15,7 +15,8 @@ class SemesterChoice(models.TextChoices):
 
 
 class Course(models.Model):
-    supervisor = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
+    id = models.AutoField(primary_key=True)
+    # supervisor = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     course_name = models.CharField(max_length=20)
     course_code = models.CharField(max_length=6)
@@ -27,19 +28,21 @@ class Course(models.Model):
 
 
 class CourseChoice(models.TextChoices):
-    user = User.objects.all()
-    student = Student.objects.get(user=user)
-    courses = Course.objects.filter(student=user, level=student.level)
-    for i in range(len(courses)):
-        course = courses[i], courses[i]
+    pass
+#     user = User.objects.all()
+#     student = Student.objects.get(user=user)
+#     courses = Course.objects.filter(student=user, level=student.level)
+#     for i in range(len(courses)):
+#         course = courses[i], courses[i]
 
 
 class StudentCourse(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, choices=CourseChoice.choices)
+    pass
+    # student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    # course = models.ForeignKey(Course, choices=CourseChoice.choices,  on_delete=models.CASCADE)
 
-
-class TeacherCourse(models.Model):
-    student = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
-    course = models.ForeignKey(Course, choices=CourseChoice.choices)
-
+#
+class SupervisorCourse(models.Model):
+    pass
+#     student = models.ForeignKey(Supervisor, on_delete=models.CASCADE)
+#     course = models.ForeignKey(Course, choices=CourseChoice.choices,  on_delete=models.CASCADE)

@@ -5,8 +5,7 @@ from rest_framework.views import APIView
 from .models import Course
 from .permissions import IsSuperAdminPermission, IsStudentPermission
 from rest_framework import generics
-
-from .serializers import CourseSerializer, StudentCourseSerializer, TeacherCourseSerializer
+from .serializers import CourseSerializer, StudentCourseSerializer, SupervisorCourseSerializer
 
 
 # Create your views here.
@@ -42,5 +41,5 @@ class RegisterCourseView(generics.CreateAPIView):
 class AssignCourseView(generics.CreateAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsSuperAdminPermission]
-    serializer_class = TeacherCourseSerializer
+    serializer_class = SupervisorCourseSerializer
     queryset = Course.objects.all()

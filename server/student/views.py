@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics, status
+from rest_framework import generics, status, serializers
 from rest_framework.authentication import BasicAuthentication, SessionAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -43,12 +43,20 @@ class DeleteStudentProfile(generics.RetrieveDestroyAPIView):
     serializer_class = StudentSerializer
     permission_classes = [IsAuthenticated, IsAdminPermission]
     lookup_field = 'pk'
-    queryset = StudentProfile.objects.all()
+    queryset = Student.objects.all()
 
 
-class UpdateStudentProfile(generics.RetrieveUpdateAPIView):
+class UpdateStudentProfile(generics.UpdateAPIView):
     serializer_class = StudentSerializer
-    authentication_classes = [SessionAuthentication, BasicAuthentication]
-    permission_classes = [IsAuthenticated, IsAdminPermission]
-    lookup_field = 'pk'
-    queryset = StudentProfile.objects.all()
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
+    def update(self, request, *args, **kwargs):
+        user = self.request.user
+        if user:
+            profile = Student.objects.get(user_id=user)
+            serializer = StudentSerializer(profile, data = request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)
+

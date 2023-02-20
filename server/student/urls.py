@@ -6,5 +6,5 @@ urlpatterns = [
     path("get-students", views.GetAllStudentProfile.as_view(), name="get students"),
     path("get-student/<str:pk>", views.GetStudentProfile.as_view(), name="get student"),
     path("delete-student/<str:pk>", views.DeleteStudentProfile.as_view(), name="delete student"),
-    path("update-student/<str:pk>", views.UpdateStudentProfile.as_view(), name="update student")
+    path("profile/update", views.UpdateStudentProfile.as_view(), name="update student")
 ]

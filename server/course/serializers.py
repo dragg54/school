@@ -1,14 +1,14 @@
 from rest_framework import serializers
-from .models import Course, StudentCourse, TeacherCourse
+from .models import Course, StudentCourse, SupervisorCourse
 
 
-class CourseSerializer(serializers):
+class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Course
         fields = "__all__"
 
 
-class StudentCourseSerializer(serializers):
+class StudentCourseSerializer(serializers.ModelSerializer):
     def create(self):
         student = self.request.user
         student_course = StudentCourse.objects.create(
@@ -22,7 +22,7 @@ class StudentCourseSerializer(serializers):
         fields = "__all__"
 
 
-class TeacherCourseSerializer(serializers):
+class SupervisorCourseSerializer(serializers.ModelSerializer):
     class Meta:
-        model = TeacherCourse
+        model = SupervisorCourse
         fields = "__all__"
